@@ -3,6 +3,7 @@ import './Orders.css';
 import { connect } from 'react-redux';
 import { setOrders } from '../../actions';
 import { getOrders } from '../../apiCalls';
+import { deleteOrder } from '../../actions';
 
 class Orders extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Orders extends Component {
               return <li key={Math.random()}>{ingredient}</li>
             })}
           </ul>
+          <button className='delete-btn' id={order.id} onClick={() => {this.props.deleteOrder(order.id)}}>Delete Order</button>
         </div>
       )
     });
@@ -44,7 +46,8 @@ const mapStateToProps = ({ orders }) => ({
 
 const mapDispatchToProps = dispatch => (
   {
-    setOrders: (orders) => dispatch(setOrders(orders))
+    setOrders: (orders) => dispatch(setOrders(orders)),
+    deleteOrder: (id) => dispatch(deleteOrder(id))
   }
 );
 
