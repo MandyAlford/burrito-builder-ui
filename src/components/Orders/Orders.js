@@ -19,11 +19,11 @@ class Orders extends Component {
   render() {
     const orderEls = this.props.orders.map(order => {
       return (
-        <div className="order" key={Date.now()}>
+        <div className="order" key={Math.random()}>
           <h3>{order.name}</h3>
           <ul className="ingredient-list">
             {order.ingredients.map(ingredient => {
-              return <li key={Date.now()}>{ingredient}</li>
+              return <li key={Math.random()}>{ingredient}</li>
             })}
           </ul>
         </div>
