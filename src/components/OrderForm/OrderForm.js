@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { sendOrder } from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -21,6 +23,11 @@ class OrderForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { name, ingredients } = this.state
+    const { createOrder } = this.props;
+    if(name !== '' && ingredients.length > 0){
+
+    }
     this.clearInputs();
   }
 
