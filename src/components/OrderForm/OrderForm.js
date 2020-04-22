@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendOrder } from '../../apiCalls';
+import { createOrder } from './../../actions';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -26,7 +27,9 @@ class OrderForm extends Component {
     const { name, ingredients } = this.state
     const { createOrder } = this.props;
     if(name !== '' && ingredients.length > 0){
-
+      const newOrder = this.state
+      createOrder(newOrder)
+      sendOrder(newOrder)
     }
     this.clearInputs();
   }
@@ -67,4 +70,12 @@ class OrderForm extends Component {
   }
 }
 
-export default OrderForm;
+export const mapStateToProps = state => ({
+  orders: state.orders,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  createOrder: order => dispatch(createOrder(order)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
