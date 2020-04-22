@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setOrders } from '../../actions';
 import { getOrders } from '../../apiCalls';
 import { deleteOrder } from '../../actions';
+import { deleteOrderFromApi } from '../../apiCalls';
 
 class Orders extends Component {
   constructor(props) {
@@ -27,7 +28,10 @@ class Orders extends Component {
               return <li key={Math.random()}>{ingredient}</li>
             })}
           </ul>
-          <button className='delete-btn' id={order.id} onClick={() => {this.props.deleteOrder(order.id)}}>Delete Order</button>
+          <button className='delete-btn' id={order.id} onClick={() => {
+            deleteOrderFromApi(order.id)
+            this.props.deleteOrder(order.id)
+          }}>Delete Order</button>
         </div>
       )
     });

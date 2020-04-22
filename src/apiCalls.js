@@ -14,3 +14,13 @@ export const sendOrder = (order) => {
   return fetch('http://localhost:3001/api/v1/orders', options)
     .then(response => response.json())
   }
+
+export const deleteOrderFromApi = id => {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  return fetch(`/api/v1/orders/${id}`)
+}
