@@ -22,5 +22,6 @@ export const deleteOrderFromApi = id => {
       'Content-Type': 'application/json'
     }
   }
-  return fetch(`/api/v1/orders/${id}`)
+  return fetch(`http://localhost:3001/api/v1/orders/${id}`, options)
+    .then(response => response.status)
 }
